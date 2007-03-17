@@ -1,0 +1,28 @@
+---
+name: Test-Run-Plugin-CollectStats
+version: 0.01
+author:
+  - 'Shlomi Fish <shlomif@cpan.org>'
+abstract: |-
+  Test::Run plugin to collect statistics and 
+  data.
+license: bsd
+resources:
+  license: http://www.opensource.org/licenses/bsd-license.php
+requires:
+  NEXT: 0
+  Storable: 0
+  Test::Run::Base::Struct: 0
+  Test::Run::Core: 0.0106
+build_requires:
+  Test::More: 0
+provides:
+  Test::Run::Plugin::CollectStats:
+    file: lib/Test/Run/Plugin/CollectStats.pm
+    version: 0.01
+  Test::Run::Plugin::CollectStats::TestFileData:
+    file: lib/Test/Run/Plugin/CollectStats/TestFileData.pm
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

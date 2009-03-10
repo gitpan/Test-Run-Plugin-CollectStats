@@ -1,14 +1,14 @@
 ---
 name: Test-Run-Plugin-CollectStats
-version: 0.01
+version: 0.0101
 author:
   - 'Shlomi Fish <shlomif@cpan.org>'
 abstract: |-
   Test::Run plugin to collect statistics and 
   data.
-license: bsd
+license: mit
 resources:
-  license: http://www.opensource.org/licenses/bsd-license.php
+  license: http://www.opensource.org/licenses/mit-license.php
 requires:
   NEXT: 0
   Storable: 0
@@ -16,13 +16,14 @@ requires:
   Test::Run::Core: 0.0106
 build_requires:
   Test::More: 0
+  Test::Trap: 0
 provides:
   Test::Run::Plugin::CollectStats:
     file: lib/Test/Run/Plugin/CollectStats.pm
-    version: 0.01
+    version: 0.0101
   Test::Run::Plugin::CollectStats::TestFileData:
     file: lib/Test/Run/Plugin/CollectStats/TestFileData.pm
-generated_by: Module::Build version 0.2805
+generated_by: Module::Build version 0.32
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

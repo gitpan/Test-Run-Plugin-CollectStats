@@ -3,11 +3,12 @@ package Test::Run::Plugin::CollectStats;
 use warnings;
 use strict;
 
-use NEXT;
+use Moose;
+
+use MRO::Compat;
 use Storable ();
 
-use base 'Test::Run::Base';
-use base 'Class::Accessor';
+extends('Test::Run::Base');
 
 use Test::Run::Plugin::CollectStats::TestFileData;
 
@@ -18,15 +19,19 @@ data.
 
 =head1 VERSION
 
-Version 0.0101
+Version 0.0102
 
 =cut
 
-__PACKAGE__->mk_accessors(qw(
-    _recorded_test_files_data
-    _test_files_names_map
-));
-our $VERSION = '0.0101';
+has '_recorded_test_files_data' => (is => "rw", isa => "ArrayRef",
+    default => sub { [] },
+);
+
+has '_test_files_names_map' => (is => "rw", isa => "HashRef",
+    default => sub { +{} },
+);
+
+our $VERSION = '0.0102';
 
 =head1 SYNOPSIS
 
@@ -39,23 +44,13 @@ our $VERSION = '0.0101';
 
 =cut
 
-sub _init
-{
-    my ($self, $args) = @_;
-
-    my $ret = $self->NEXT::_init($args);
-
-    $self->_recorded_test_files_data([]);
-    $self->_test_files_names_map({});
-}
-
 sub _run_single_test
 {
     my ($self, $args) = @_;
 
     my $filename = $args->{test_file};
 
-    $self->NEXT::_run_single_test($args);
+    $self->next::method($args);
 
     $self->_test_files_names_map->{$filename} =
         scalar(@{$self->_recorded_test_files_data()});

@@ -3,6 +3,8 @@ package Test::Run::Plugin::CollectStats::TestFileData;
 use strict;
 use warnings;
 
+use Moose;
+
 =head1 NAME
 
 Test::Run::Plugin::CollectStats::TestFileData - an object representing the
@@ -10,25 +12,15 @@ data for a single test file in Test::Run.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.0102
 
 =cut
 
-use base 'Test::Run::Base::Struct';
+extends('Test::Run::Base::Struct');
 
-my @fields = 
-(qw(
-    elapsed_time
-    results
-    summary_object
-));
-
-__PACKAGE__->mk_accessors(@fields);
-
-sub _get_private_fields
-{
-    return [@fields];
-}
+has 'elapsed_time' => (is => "rw", isa => "Str");
+has 'results' => (is => "rw", isa => "Test::Run::Straps::StrapsTotalsObj");
+has 'summary_object' => (is => "rw", isa => "Test::Run::Obj::TestObj");
 
 1;
 
